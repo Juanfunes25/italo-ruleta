@@ -69,14 +69,6 @@ Todo vive en un único archivo: [`src/config/prizes.js`](src/config/prizes.js).
 
 No hace falta tocar ningún otro archivo para estos cambios.
 
-## Editar las sucursales
-
-Los nombres y direcciones que aparecen en la tarjeta de resultado (justo antes de
-revelar el premio, recordando dónde canjearlo) viven en
-[`src/config/branches.js`](src/config/branches.js). **Faltan las direcciones reales** —
-hoy están como `"Dirección pendiente de completar"` para las 5 sucursales (Los Andes,
-10 Calle EXPRESS, Progreso, Mackey, Próceres). Edita ese archivo cuando las tengas.
-
 ## Panel de staff (oculto)
 
 Toca el wordmark **"Ítalo"** (columna izquierda) **5 veces seguidas** para abrir un
@@ -89,18 +81,15 @@ de esa tablet — no hay backend ni sincronización entre sucursales.
 
 ```
 src/
-├─ config/
-│  ├─ prizes.js          Premios, pesos, ángulos, links de QR, tiempos
-│  └─ branches.js        Nombre + dirección de las 5 sucursales (para completar)
+├─ config/prizes.js     Único archivo a editar: premios, pesos, ángulos, links, tiempos
 ├─ components/
 │  ├─ Wheel.jsx          Rueda SVG + anillo tipo barquillo + animación de giro
 │  ├─ ResultCard.jsx     Tarjeta de premio + confeti + cuenta regresiva
-│  ├─ Branches.jsx       Lista de sucursales, se muestra antes de revelar el premio
 │  ├─ ReviewQR.jsx        QR pasivo de reseña/Instagram
 │  └─ StaffPanel.jsx     Panel oculto de estadísticas
 ├─ hooks/useStats.js     Contador local en localStorage (por día)
 ├─ utils/prizeSelection.js  Sorteo ponderado + geometría de la rueda (sin React, testeable)
-└─ styles/theme.css      Paleta y tipografías de marca (Poppins + Fredoka, autoalojadas)
+└─ styles/theme.css      Paleta y tipografía de marca (Poppins, autoalojada)
 ```
 
 ## Íconos de la PWA
@@ -113,17 +102,11 @@ node scripts/gen-icons.js
 
 ## Marca
 
-Colores y tipografías siguen el `BrandBook Italo.pdf`:
+Colores y tipografía siguen el `BrandBook Italo.pdf`:
 negro `#000000` (predomina), verde `#C5D288` (decora), blanco (rellena) — más algunos
 tonos de apoyo tomados del local real (ladrillo, café, verde profundo) para que la
-rueda tenga suficiente variedad de colores. Todo vive en `src/styles/theme.css`.
-
-**Pendiente:** la tipografía de marca **MOHR Rounded** es de pago y no se pudo
-autoalojar sin los archivos de fuente. Hoy se usa **Fredoka** (gratuita, look
-redondeado similar) como reemplazo temporal en los títulos. Para poner la fuente
-real: coloca los `.woff2` en `src/fonts/`, agrega un `@font-face` en `theme.css`
-y cambia `--font-display` — Poppins (cuerpo/UI) ya es la fuente real, sin cambios
-pendientes ahí.
+rueda tenga suficiente variedad de colores. Tipografía: **Poppins** en todo (títulos
+y cuerpo). Todo vive en `src/styles/theme.css`.
 
 ## Notas técnicas
 

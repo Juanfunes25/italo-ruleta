@@ -1,14 +1,9 @@
-/* Tipografías autoalojadas (@fontsource) para que funcionen 100% offline en la tablet.
-   Poppins es la fuente real de marca. Fredoka es un reemplazo temporal de MOHR Rounded
-   (fuente de pago que no está disponible para autoalojar) — swap fácil en cuanto Juan
-   pase los archivos .woff2 reales: solo hay que reemplazar estos imports y --font-display. */
+/* Tipografía autoalojada (@fontsource) para que funcione 100% offline en la tablet. */
 @import '@fontsource/poppins/400.css';
 @import '@fontsource/poppins/500.css';
 @import '@fontsource/poppins/600.css';
 @import '@fontsource/poppins/700.css';
-@import '@fontsource/fredoka/500.css';
-@import '@fontsource/fredoka/600.css';
-@import '@fontsource/fredoka/700.css';
+@import '@fontsource/poppins/800.css';
 
 :root {
   /* Paleta oficial del BrandBook Ítalo: negro (predomina), verde (decora), blanco (rellena) */
@@ -29,7 +24,7 @@
   --red: #C1272D;
   --ink: #17170F;
 
-  --font-display: 'Fredoka', 'Poppins', system-ui, sans-serif;
+  --font-display: 'Poppins', system-ui, sans-serif;
   --font-ui: 'Poppins', system-ui, sans-serif;
 }
 

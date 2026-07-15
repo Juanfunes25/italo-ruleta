@@ -16,6 +16,10 @@
 // Para cambiar la probabilidad de un premio: edita su "weight".
 // Para cambiar qué tan grande se ve la rebanada: edita su "angle" (sin que
 // se salga de la suma de 360 entre todos).
+//
+// "wheelLabel" es el texto CORTO que se ve dentro de la rueda (junto al ícono
+// de esa rebanada) — tiene que ser corto para no encimarse con el ícono.
+// "label" es el nombre completo, se usa en la tarjeta de resultado al ganar.
 // ============================================================================
 
 // Links para los códigos QR pasivos que aparecen después del premio.
@@ -25,7 +29,7 @@ export const INSTAGRAM_URL = 'https://instagram.com/italogelateria'
 
 // Segundos que la pantalla de resultado permanece visible antes de resetear
 // automáticamente para el siguiente cliente.
-export const AUTO_RESET_SECONDS = 12
+export const AUTO_RESET_SECONDS = 20
 
 // Segundos que tarda la animación de giro (varias vueltas completas).
 export const SPIN_DURATION_SECONDS = 5
@@ -40,6 +44,7 @@ export const PRIZES = [
   {
     id: 'cafe',
     label: 'Café de la casa',
+    wheelLabel: 'Café', // texto corto que se muestra EN la rueda (el label completo se ve en la tarjeta de resultado)
     description: 'Un café preparado por nuestro barista, cortesía de Ítalo.',
     redeemText: 'Muestra esta pantalla en caja para tu café.',
     icon: '☕',
@@ -47,67 +52,72 @@ export const PRIZES = [
     textColor: 'var(--cream)', // rebanada oscura → texto claro
     isWin: true,
     weight: 100, // 1 de cada 3
-    angle: 70,
+    angle: 65,
   },
   {
     id: 'pan',
     label: 'Pan o galleta de avena',
+    wheelLabel: 'Pan/Galleta',
     description: 'Un pan o galleta de avena recién horneado, para acompañar.',
     redeemText: 'Muestra esta pantalla en caja para tu pan o galleta.',
     icon: '🍪',
     color: 'var(--terracotta)', // pan/galleta — ladrillo
     textColor: 'var(--cream)', // rebanada oscura → texto claro
     isWin: true,
-    weight: 100, // 1 de cada 3
-    angle: 70,
+    weight: 60, // 1 de cada 5
+    angle: 65,
   },
   {
     id: 'sigue-1',
     label: 'Sigue participando',
+    wheelLabel: '¡Suerte!',
     description: 'Esta vez no, ¡pero vuelve pronto a intentarlo de nuevo!',
     redeemText: '',
     icon: '🍦',
     color: 'var(--charcoal)', // sigue participando — neutro
     textColor: 'var(--cream)', // rebanada oscura → texto claro
     isWin: false,
-    weight: 39,
+    weight: 63,
     angle: 55,
   },
   {
     id: 'pistacho',
     label: 'Crema de pistacho dulce',
+    wheelLabel: 'Pistacho',
     description: 'Una porción de nuestra crema de pistacho dulce, la favorita de la casa.',
     redeemText: 'Muestra esta pantalla en caja para tu crema de pistacho.',
     icon: '🥜',
     color: 'var(--green-deep)', // pistacho — verde profundo
     textColor: 'var(--cream)', // rebanada oscura → texto claro
     isWin: true,
-    weight: 15, // 1 de cada 20
+    weight: 10, // 1 de cada 30
     angle: 60,
   },
   {
     id: 'sigue-2',
     label: 'Sigue participando',
+    wheelLabel: '¡Suerte!',
     description: 'Esta vez no, ¡pero vuelve pronto a intentarlo de nuevo!',
     redeemText: '',
     icon: '🍨',
     color: 'var(--charcoal-2)', // sigue participando — neutro
     textColor: 'var(--cream)', // rebanada oscura → texto claro
     isWin: false,
-    weight: 40,
+    weight: 64,
     angle: 55,
   },
   {
     id: 'estrella',
     label: 'Premio Estrella',
-    description: 'Mini Copa Sorpresa — una bola de gelato del sabor del día, ¡de regalo!',
-    redeemText: 'Muestra esta pantalla en caja para tu Mini Copa Sorpresa.',
+    wheelLabel: 'Estrella',
+    description: 'Aceite de oliva Ristoris de 250 ml, ¡de regalo!',
+    redeemText: 'Muestra esta pantalla en caja para tu aceite de oliva Ristoris.',
     icon: '⭐',
     color: 'var(--green)', // premio estrella — verde de marca, el más llamativo
     textColor: 'var(--ink)', // rebanada clara → texto oscuro
     isWin: true,
-    weight: 6, // 1 de cada 50
-    angle: 50,
+    weight: 3, // 1 de cada 100
+    angle: 60,
   },
 ]
 

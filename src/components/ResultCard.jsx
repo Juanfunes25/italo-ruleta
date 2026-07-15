@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react'
 import confetti from 'canvas-confetti'
-import Branches from './Branches.jsx'
 import ReviewQR from './ReviewQR.jsx'
 import './ResultCard.css'
 
@@ -23,7 +22,6 @@ export default function ResultCard({ prize, secondsLeft, showQr, onDone }) {
   return (
     <div className="result-overlay">
       <div className={`result-card ${prize.isWin ? 'result-card--win' : 'result-card--again'}`}>
-        <Branches />
         <div className="result-icon">{prize.icon}</div>
         <h2 className="result-title">{prize.isWin ? prize.label : '¡Sigue participando!'}</h2>
         <p className="result-desc">{prize.description}</p>

@@ -88,7 +88,6 @@ export default function App() {
           </span>
           <span className="app__wordmark-gelateria">GELATERIA</span>
         </button>
-        <p className="app__tagline">Buono non basta</p>
         <p className="app__instruction">
           {phase === 'idle' ? 'Toca la rueda para girar' : phase === 'spinning' ? 'Girando…' : '¡Gracias por participar!'}
         </p>

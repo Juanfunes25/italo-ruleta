@@ -7,8 +7,8 @@ import './Wheel.css'
 const SIZE = 620 // viewBox lógico; el CSS lo escala al tamaño real en pantalla
 const CENTER = SIZE / 2
 const WHEEL_RADIUS = 250
-const LABEL_RADIUS = 178
-const ICON_RADIUS = 208
+const LABEL_RADIUS = 118
+const ICON_RADIUS = 198
 const HUB_RADIUS = 78
 const WAFER_INNER = 258
 const WAFER_OUTER = 300
@@ -145,7 +145,7 @@ export default function Wheel({ canSpin, onSpinStart, onResult }) {
                   <text
                     x={iconPos.x}
                     y={iconPos.y}
-                    fontSize="34"
+                    fontSize="32"
                     textAnchor="middle"
                     dominantBaseline="central"
                   >
@@ -154,7 +154,7 @@ export default function Wheel({ canSpin, onSpinStart, onResult }) {
                   <text
                     x={labelPos.x}
                     y={labelPos.y}
-                    fontSize="15"
+                    fontSize="14"
                     fontFamily="var(--font-ui)"
                     fontWeight="700"
                     fill={prize.textColor}
@@ -162,7 +162,7 @@ export default function Wheel({ canSpin, onSpinStart, onResult }) {
                     dominantBaseline="central"
                     transform={`rotate(${rot} ${labelPos.x} ${labelPos.y})`}
                   >
-                    {prize.isWin ? prize.label : '¡Suerte!'}
+                    {prize.wheelLabel}
                   </text>
                 </g>
               )
