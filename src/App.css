@@ -1,0 +1,75 @@
+.app {
+  width: 100vw;
+  height: 100dvh;
+  display: flex;
+  background: var(--cream);
+  overflow: hidden;
+}
+
+.app__brand {
+  flex: 0 0 32%;
+  max-width: 32%;
+  height: 100%;
+  background: linear-gradient(165deg, var(--navy) 0%, var(--navy-2) 100%);
+  color: var(--cream);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 5vh 6%;
+  box-shadow: 8px 0 24px rgba(0, 0, 0, 0.25);
+  position: relative;
+  z-index: 2;
+}
+
+.app__brand::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 15% 85%, rgba(212, 166, 74, 0.18), transparent 55%);
+  pointer-events: none;
+}
+
+.app__wordmark {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-style: italic;
+  font-size: clamp(2.4rem, 6.5vw, 4.2rem);
+  color: var(--gold-light);
+  background: none;
+  border: none;
+  padding: 0;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.app__tagline {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: clamp(0.85rem, 1.6vw, 1.1rem);
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin: 0;
+}
+
+.app__instruction {
+  margin-top: 1.4rem;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: clamp(1.1rem, 2.4vw, 1.6rem);
+  color: var(--cream);
+  opacity: 0.92;
+}
+
+.app__wheel-area {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3vh 3vw;
+  position: relative;
+}

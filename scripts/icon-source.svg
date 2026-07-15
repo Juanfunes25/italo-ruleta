@@ -1,0 +1,31 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FAF3E7"/>
+      <stop offset="1" stop-color="#F1E4CE"/>
+    </linearGradient>
+    <radialGradient id="hub" cx="0.38" cy="0.32" r="0.75">
+      <stop offset="0" stop-color="#C1592B"/>
+      <stop offset="1" stop-color="#9C4520"/>
+    </radialGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+
+  <!-- pointer -->
+  <path d="M256 46 L286 92 L226 92 Z" fill="#9C4520"/>
+
+  <!-- wafer ring -->
+  <circle cx="256" cy="256" r="206" fill="#D4A64A"/>
+  <circle cx="256" cy="256" r="196" fill="#EFCE86"/>
+
+  <!-- wheel slices -->
+  <g stroke="#FAF3E7" stroke-width="5">
+    <path d="M256,256 L256,70 A186,186 0 0 1 442,256 Z" fill="#C1592B"/>
+    <path d="M256,256 L442,256 A186,186 0 0 1 256,442 Z" fill="#D4A64A"/>
+    <path d="M256,256 L256,442 A186,186 0 0 1 70,256 Z" fill="#1B2A41"/>
+    <path d="M256,256 L70,256 A186,186 0 0 1 256,70 Z" fill="#8BA888"/>
+  </g>
+
+  <!-- hub -->
+  <circle cx="256" cy="256" r="66" fill="url(#hub)" stroke="#D4A64A" stroke-width="8"/>
+</svg>

@@ -1,0 +1,63 @@
+/* Tipografías autoalojadas (@fontsource) para que funcionen 100% offline en la tablet */
+@import '@fontsource/fraunces/600.css';
+@import '@fontsource/fraunces/700.css';
+@import '@fontsource/fraunces/900.css';
+@import '@fontsource/fraunces/600-italic.css';
+@import '@fontsource/manrope/400.css';
+@import '@fontsource/manrope/600.css';
+@import '@fontsource/manrope/700.css';
+@import '@fontsource/manrope/800.css';
+
+:root {
+  --cream: #FAF3E7;
+  --cream-2: #F1E4CE;
+  --terracotta: #C1592B;
+  --terracotta-dark: #9C4520;
+  --navy: #1B2A41;
+  --navy-2: #28405E;
+  --gold: #D4A64A;
+  --gold-light: #EFCE86;
+  --pistachio: #8BA888;
+  --berry: #C4667A;
+  --coffee: #6B4226;
+  --ink: #241A12;
+
+  --font-display: 'Fraunces', 'Georgia', serif;
+  --font-ui: 'Manrope', system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  /* Evita zoom accidental por doble-tap y overscroll en tablets */
+  touch-action: manipulation;
+  overscroll-behavior: none;
+}
+
+body {
+  font-family: var(--font-ui);
+  color: var(--ink);
+  background: var(--cream);
+  overflow: hidden;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  margin: 0;
+}
