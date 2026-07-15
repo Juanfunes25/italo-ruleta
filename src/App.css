@@ -85,14 +85,15 @@
 
 .app__disclaimer {
   margin-top: 0.9rem;
-  display: inline-block;
+  max-width: 26ch;
   font-family: var(--font-ui);
   font-weight: 600;
-  font-size: clamp(0.8rem, 1.5vw, 1rem);
+  font-size: clamp(0.72rem, 1.3vw, 0.88rem);
+  line-height: 1.35;
   color: var(--charcoal);
   background: var(--green);
-  border-radius: 999px;
-  padding: 0.4em 0.9em;
+  border-radius: 14px;
+  padding: 0.55em 0.8em;
 }
 
 .app__wheel-area {

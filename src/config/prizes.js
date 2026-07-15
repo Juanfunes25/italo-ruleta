@@ -29,7 +29,7 @@ export const INSTAGRAM_URL = 'https://instagram.com/italogelateria'
 
 // Segundos que la pantalla de resultado permanece visible antes de resetear
 // automáticamente para el siguiente cliente.
-export const AUTO_RESET_SECONDS = 20
+export const AUTO_RESET_SECONDS = 30
 
 // Segundos que tarda la animación de giro (varias vueltas completas).
 export const SPIN_DURATION_SECONDS = 5
@@ -37,6 +37,10 @@ export const SPIN_DURATION_SECONDS = 5
 // Segundos que se muestra la pantalla con el nombre de las 5 sucursales
 // después de que la rueda se detiene y antes de revelar el premio.
 export const BRANCHES_SCREEN_SECONDS = 4
+
+// Código de 3 caracteres que el staff debe ingresar antes de cada giro
+// (evita que un mismo cliente gire varias veces seguidas sin autorización).
+export const STAFF_PIN = 'abc'
 
 // ============================================================================
 // TABLA DE PREMIOS

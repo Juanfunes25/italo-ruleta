@@ -41,12 +41,13 @@ function waferTriangle(index) {
 
 const sliceRanges = getSliceRanges()
 
-export default function Wheel({ canSpin, onSpinStart, onResult }) {
+export default function Wheel({ canSpin, locked, onLockedTap, spinRequest = 0, onSpinStart, onResult }) {
   const [rotation, setRotation] = useState(0)
   const [spinning, setSpinning] = useState(false)
   const pendingPrizeRef = useRef(null)
   const settledRef = useRef(true)
   const settleTimerRef = useRef(null)
+  const lastSpinRequestRef = useRef(spinRequest)
 
   // Resuelve el giro una sola vez, ya sea por transitionend (caso normal) o
   // por el timer de respaldo (si el navegador de la tablet no dispara el
@@ -91,6 +92,24 @@ export default function Wheel({ canSpin, onSpinStart, onResult }) {
     },
     [finishSpin]
   )
+
+  // El código de staff (PinGate, en App.jsx) autoriza el giro incrementando
+  // spinRequest — cuando cambia, se arranca el giro sin necesidad de un
+  // segundo toque en el hub.
+  useEffect(() => {
+    if (spinRequest !== lastSpinRequestRef.current) {
+      lastSpinRequestRef.current = spinRequest
+      handleSpin()
+    }
+  }, [spinRequest, handleSpin])
+
+  const handleHubClick = useCallback(() => {
+    if (locked) {
+      onLockedTap?.()
+      return
+    }
+    handleSpin()
+  }, [locked, onLockedTap, handleSpin])
 
   return (
     <div className="wheel-stage">
@@ -175,7 +194,7 @@ export default function Wheel({ canSpin, onSpinStart, onResult }) {
           type="button"
           className={`wheel-hub ${!canSpin || spinning ? 'wheel-hub--disabled' : ''}`}
           style={{ width: `${((HUB_RADIUS * 2) / SIZE) * 100}%`, height: `${((HUB_RADIUS * 2) / SIZE) * 100}%` }}
-          onClick={handleSpin}
+          onClick={handleHubClick}
           disabled={!canSpin || spinning}
           aria-label="Girar la ruleta de premios"
         >

@@ -63,11 +63,21 @@ Todo vive en un único archivo: [`src/config/prizes.js`](src/config/prizes.js).
   que los premios raros sigan siendo legibles). La suma de todos los `angle` debe
   dar 360.
 - **`GOOGLE_REVIEW_URL`** y **`INSTAGRAM_URL`**: reemplaza estos placeholders con
-  tus links reales (aparecen como QR pasivos después del premio).
-- **`AUTO_RESET_SECONDS`**, **`SPIN_DURATION_SECONDS`**, **`QR_CARD_DELAY_SECONDS`**:
-  tiempos de la animación y el reseteo automático.
+  tus links reales (se muestran junto con el premio al revelarlo).
+- **`AUTO_RESET_SECONDS`**, **`SPIN_DURATION_SECONDS`**, **`BRANCHES_SCREEN_SECONDS`**:
+  tiempos de la animación, la pantalla de sucursales y el reseteo automático.
+- **`STAFF_PIN`**: el código de 3 caracteres que el staff debe ingresar antes de
+  cada giro (ver siguiente sección).
 
 No hace falta tocar ningún otro archivo para estos cambios.
+
+## Código de staff antes de girar
+
+Para que un mismo cliente no pueda girar varias veces seguidas sin autorización,
+cada giro pide un código corto (por defecto `abc`, editable en `STAFF_PIN` dentro
+de [`src/config/prizes.js`](src/config/prizes.js)). El cliente toca la rueda, y en
+vez de girar aparece un cuadro pidiendo el código — lo ingresa el cajero después de
+cobrar la compra mínima. Se pide de nuevo en cada giro, nunca queda "desbloqueado".
 
 ## Panel de staff (oculto)
 
@@ -84,8 +94,10 @@ src/
 ├─ config/prizes.js     Único archivo a editar: premios, pesos, ángulos, links, tiempos
 ├─ components/
 │  ├─ Wheel.jsx          Rueda SVG + anillo tipo barquillo + animación de giro
+│  ├─ PinGate.jsx        Código de staff que se pide antes de cada giro
+│  ├─ BranchesScreen.jsx Pantalla con las 5 sucursales antes de revelar el premio
 │  ├─ ResultCard.jsx     Tarjeta de premio + confeti + cuenta regresiva
-│  ├─ ReviewQR.jsx        QR pasivo de reseña/Instagram
+│  ├─ ReviewQR.jsx        QR de reseña/Instagram, junto con el premio
 │  └─ StaffPanel.jsx     Panel oculto de estadísticas
 ├─ hooks/useStats.js     Contador local en localStorage (por día)
 ├─ utils/prizeSelection.js  Sorteo ponderado + geometría de la rueda (sin React, testeable)

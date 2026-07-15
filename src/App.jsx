@@ -3,6 +3,7 @@ import Wheel from './components/Wheel.jsx'
 import BranchesScreen from './components/BranchesScreen.jsx'
 import ResultCard from './components/ResultCard.jsx'
 import StaffPanel from './components/StaffPanel.jsx'
+import PinGate from './components/PinGate.jsx'
 import { useStats } from './hooks/useStats.js'
 import { AUTO_RESET_SECONDS, BRANCHES_SCREEN_SECONDS } from './config/prizes.js'
 import './App.css'
@@ -15,6 +16,8 @@ export default function App() {
   const [prize, setPrize] = useState(null)
   const [secondsLeft, setSecondsLeft] = useState(AUTO_RESET_SECONDS)
   const [staffOpen, setStaffOpen] = useState(false)
+  const [pinOpen, setPinOpen] = useState(false)
+  const [spinRequest, setSpinRequest] = useState(0)
 
   const { counts, totalSpins, recordSpin, resetToday } = useStats()
 
@@ -89,6 +92,19 @@ export default function App() {
     }
   }
 
+  const handleLockedTap = useCallback(() => {
+    setPinOpen(true)
+  }, [])
+
+  const handlePinSuccess = useCallback(() => {
+    setPinOpen(false)
+    setSpinRequest((n) => n + 1)
+  }, [])
+
+  const handlePinCancel = useCallback(() => {
+    setPinOpen(false)
+  }, [])
+
   return (
     <div className="app">
       <aside className="app__brand">
@@ -107,16 +123,29 @@ export default function App() {
                 ? '¡Ya casi!'
                 : '¡Gracias por participar!'}
         </p>
-        {phase === 'idle' && <p className="app__disclaimer">Participa por la compra mínima</p>}
+        {phase === 'idle' && (
+          <p className="app__disclaimer">
+            Participa por la compra mínima. ¡Una sola participación por factura! Restricciones aplican.
+          </p>
+        )}
       </aside>
 
       <main className="app__wheel-area">
-        <Wheel canSpin={phase === 'idle'} onSpinStart={handleSpinStart} onResult={handleSpinDone} />
+        <Wheel
+          canSpin={phase === 'idle'}
+          locked={phase === 'idle'}
+          onLockedTap={handleLockedTap}
+          spinRequest={spinRequest}
+          onSpinStart={handleSpinStart}
+          onResult={handleSpinDone}
+        />
       </main>
 
       {phase === 'branches' && <BranchesScreen />}
 
       {phase === 'result' && prize && <ResultCard prize={prize} secondsLeft={secondsLeft} onDone={resetToIdle} />}
+
+      {pinOpen && <PinGate onSuccess={handlePinSuccess} onCancel={handlePinCancel} />}
 
       {staffOpen && (
         <StaffPanel
