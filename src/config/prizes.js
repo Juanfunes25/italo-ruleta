@@ -40,35 +40,40 @@ export const QR_CARD_DELAY_SECONDS = 2.5
 // ============================================================================
 // TABLA DE PREMIOS
 // ============================================================================
+// Instrucción de canje: se muestra en la tarjeta de resultado para todo premio
+// ganador. Recuerda la condición de participación (compra mínima) en vez de
+// dar una instrucción de canje en caja.
+const REDEEM_TEXT = 'Participa por la compra mínima.'
+
 export const PRIZES = [
   {
     id: 'cafe',
     label: 'Café de la casa',
     wheelLabel: 'Café', // texto corto que se muestra EN la rueda (el label completo se ve en la tarjeta de resultado)
     description: 'Un café preparado por nuestro barista, cortesía de Ítalo.',
-    redeemText: 'Muestra esta pantalla en caja para tu café.',
+    redeemText: REDEEM_TEXT,
     icon: '☕',
     color: 'var(--coffee)', // café — marrón
     textColor: 'var(--cream)', // rebanada oscura → texto claro
     isWin: true,
     weight: 100, // 1 de cada 3
-    angle: 65,
+    angle: 60,
   },
   {
     id: 'pan',
     label: 'Pan o galleta de avena',
     wheelLabel: 'Pan/Galleta',
     description: 'Un pan o galleta de avena recién horneado, para acompañar.',
-    redeemText: 'Muestra esta pantalla en caja para tu pan o galleta.',
+    redeemText: REDEEM_TEXT,
     icon: '🍪',
     color: 'var(--terracotta)', // pan/galleta — ladrillo
     textColor: 'var(--cream)', // rebanada oscura → texto claro
     isWin: true,
     weight: 60, // 1 de cada 5
-    angle: 65,
+    angle: 60,
   },
   {
-    id: 'sigue-1',
+    id: 'sigue',
     label: 'Sigue participando',
     wheelLabel: '¡Suerte!',
     description: 'Esta vez no, ¡pero vuelve pronto a intentarlo de nuevo!',
@@ -77,47 +82,47 @@ export const PRIZES = [
     color: 'var(--charcoal)', // sigue participando — neutro
     textColor: 'var(--cream)', // rebanada oscura → texto claro
     isWin: false,
-    weight: 63,
+    weight: 17,
     angle: 55,
   },
   {
-    id: 'pistacho',
-    label: 'Crema de pistacho dulce',
-    wheelLabel: 'Pistacho',
-    description: 'Una porción de nuestra crema de pistacho dulce, la favorita de la casa.',
-    redeemText: 'Muestra esta pantalla en caja para tu crema de pistacho.',
+    id: 'topping-pistacho',
+    label: 'Topping de pistacho gratis',
+    wheelLabel: 'Topping',
+    description: 'Un topping de pistacho gratis para tu gelato.',
+    redeemText: REDEEM_TEXT,
     icon: '🥜',
-    color: 'var(--green-deep)', // pistacho — verde profundo
+    color: 'var(--green-deep)', // topping de pistacho — verde profundo
     textColor: 'var(--cream)', // rebanada oscura → texto claro
     isWin: true,
-    weight: 10, // 1 de cada 30
+    weight: 60, // 1 de cada 5
     angle: 60,
   },
   {
-    id: 'sigue-2',
-    label: 'Sigue participando',
-    wheelLabel: '¡Suerte!',
-    description: 'Esta vez no, ¡pero vuelve pronto a intentarlo de nuevo!',
-    redeemText: '',
+    id: 'agranda-copa',
+    label: 'Agranda tu copa gratis',
+    wheelLabel: 'Agranda',
+    description: 'Sube de tamaño tu copa sin costo extra.',
+    redeemText: REDEEM_TEXT,
     icon: '🍨',
-    color: 'var(--charcoal-2)', // sigue participando — neutro
+    color: 'var(--charcoal-2)', // agranda tu copa — neutro
     textColor: 'var(--cream)', // rebanada oscura → texto claro
-    isWin: false,
-    weight: 64,
-    angle: 55,
+    isWin: true,
+    weight: 60, // 1 de cada 5
+    angle: 60,
   },
   {
     id: 'estrella',
     label: 'Premio Estrella',
     wheelLabel: 'Estrella',
-    description: 'Aceite de oliva Ristoris de 250 ml, ¡de regalo!',
-    redeemText: 'Muestra esta pantalla en caja para tu aceite de oliva Ristoris.',
+    description: 'Una porción de nuestra crema de pistacho dulce, la favorita de la casa.',
+    redeemText: REDEEM_TEXT,
     icon: '⭐',
     color: 'var(--green)', // premio estrella — verde de marca, el más llamativo
     textColor: 'var(--ink)', // rebanada clara → texto oscuro
     isWin: true,
     weight: 3, // 1 de cada 100
-    angle: 60,
+    angle: 65,
   },
 ]
 
