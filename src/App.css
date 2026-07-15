@@ -10,7 +10,7 @@
   flex: 0 0 32%;
   max-width: 32%;
   height: 100%;
-  background: linear-gradient(165deg, var(--navy) 0%, var(--navy-2) 100%);
+  background: linear-gradient(165deg, var(--charcoal) 0%, var(--black) 100%);
   color: var(--cream);
   display: flex;
   flex-direction: column;
@@ -18,7 +18,7 @@
   justify-content: center;
   gap: 0.6rem;
   padding: 5vh 6%;
-  box-shadow: 8px 0 24px rgba(0, 0, 0, 0.25);
+  box-shadow: 8px 0 24px rgba(0, 0, 0, 0.35);
   position: relative;
   z-index: 2;
 }
@@ -27,32 +27,61 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 15% 85%, rgba(212, 166, 74, 0.18), transparent 55%);
+  background: radial-gradient(circle at 15% 85%, rgba(197, 210, 136, 0.16), transparent 55%);
   pointer-events: none;
 }
 
 .app__wordmark {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   font-family: var(--font-display);
-  font-weight: 900;
-  font-style: italic;
-  font-size: clamp(2.4rem, 6.5vw, 4.2rem);
-  color: var(--gold-light);
   background: none;
   border: none;
   padding: 0;
   line-height: 1;
-  letter-spacing: -0.01em;
-  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.app__wordmark-italo {
+  font-weight: 700;
+  font-size: clamp(2.6rem, 7vw, 4.4rem);
+  color: var(--white);
+  letter-spacing: 0.01em;
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
+}
+
+.app__wordmark-o {
+  position: relative;
+  display: inline-block;
+}
+
+.app__wordmark-o::after {
+  content: '';
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  bottom: -0.14em;
+  height: 0.1em;
+  background: var(--green);
+  border-radius: 2px;
+}
+
+.app__wordmark-gelateria {
+  font-weight: 600;
+  font-size: clamp(1.3rem, 3.4vw, 2.1rem);
+  color: var(--green);
+  letter-spacing: 0.06em;
+  margin-top: 0.16em;
 }
 
 .app__tagline {
-  font-family: var(--font-ui);
-  font-weight: 600;
-  font-size: clamp(0.85rem, 1.6vw, 1.1rem);
-  color: var(--gold);
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(0.95rem, 1.8vw, 1.25rem);
+  color: var(--cream-2);
   margin: 0;
+  opacity: 0.85;
 }
 
 .app__instruction {

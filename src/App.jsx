@@ -82,10 +82,13 @@ export default function App() {
   return (
     <div className="app">
       <aside className="app__brand">
-        <button type="button" className="app__wordmark" onClick={handleWordmarkTap} aria-label="Ítalo">
-          Ítalo
+        <button type="button" className="app__wordmark" onClick={handleWordmarkTap} aria-label="Ítalo Gelateria">
+          <span className="app__wordmark-italo">
+            ITAL<span className="app__wordmark-o">O</span>
+          </span>
+          <span className="app__wordmark-gelateria">GELATERIA</span>
         </button>
-        <p className="app__tagline">Gelateria Artesanal</p>
+        <p className="app__tagline">Buono non basta</p>
         <p className="app__instruction">
           {phase === 'idle' ? 'Toca la rueda para girar' : phase === 'spinning' ? 'Girando…' : '¡Gracias por participar!'}
         </p>

@@ -8,12 +8,12 @@ export default function ReviewQR() {
   return (
     <div className="review-qr">
       <div className="review-qr__item">
-        <QRCodeSVG value={GOOGLE_REVIEW_URL} size={72} bgColor="transparent" fgColor="var(--navy)" level="M" />
+        <QRCodeSVG value={GOOGLE_REVIEW_URL} size={72} bgColor="transparent" fgColor="var(--charcoal)" level="M" />
         <span>¿Te gustó tu Ítalo?<br />Déjanos tu reseña</span>
       </div>
       {INSTAGRAM_URL && (
         <div className="review-qr__item">
-          <QRCodeSVG value={INSTAGRAM_URL} size={72} bgColor="transparent" fgColor="var(--navy)" level="M" />
+          <QRCodeSVG value={INSTAGRAM_URL} size={72} bgColor="transparent" fgColor="var(--charcoal)" level="M" />
           <span>Síguenos en<br />Instagram</span>
         </div>
       )}

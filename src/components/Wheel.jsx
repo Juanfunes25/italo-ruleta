@@ -105,19 +105,19 @@ export default function Wheel({ canSpin, onSpinStart, onResult }) {
           onTransitionEnd={handleTransitionEnd}
         >
         <svg className="wheel-svg" viewBox={`0 0 ${SIZE} ${SIZE}`}>
-          {/* Anillo decorativo tipo barquillo: franjas triangulares doradas alternadas */}
+          {/* Anillo decorativo tipo barquillo: franjas triangulares verdes alternadas */}
           <g>
             {Array.from({ length: WAFER_COUNT }).map((_, i) => (
               <path
                 key={i}
                 d={waferTriangle(i)}
-                fill={i % 2 === 0 ? 'var(--gold)' : 'var(--gold-light)'}
-                stroke="var(--terracotta-dark)"
+                fill={i % 2 === 0 ? 'var(--green)' : 'var(--green-light)'}
+                stroke="var(--black)"
                 strokeWidth="0.5"
               />
             ))}
           </g>
-          <circle cx={CENTER} cy={CENTER} r={WHEEL_RADIUS + 6} fill="var(--cream)" stroke="var(--gold)" strokeWidth="4" />
+          <circle cx={CENTER} cy={CENTER} r={WHEEL_RADIUS + 6} fill="var(--cream)" stroke="var(--green)" strokeWidth="4" />
 
           {/* Rebanadas de premios */}
           <g>
@@ -156,8 +156,8 @@ export default function Wheel({ canSpin, onSpinStart, onResult }) {
                     y={labelPos.y}
                     fontSize="15"
                     fontFamily="var(--font-ui)"
-                    fontWeight="800"
-                    fill="var(--cream)"
+                    fontWeight="700"
+                    fill={prize.textColor}
                     textAnchor="middle"
                     dominantBaseline="central"
                     transform={`rotate(${rot} ${labelPos.x} ${labelPos.y})`}

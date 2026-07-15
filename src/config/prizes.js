@@ -43,7 +43,8 @@ export const PRIZES = [
     description: 'Un café preparado por nuestro barista, cortesía de Ítalo.',
     redeemText: 'Muestra esta pantalla en caja para tu café.',
     icon: '☕',
-    color: 'var(--coffee)',
+    color: 'var(--coffee)', // café — marrón
+    textColor: 'var(--cream)', // rebanada oscura → texto claro
     isWin: true,
     weight: 100, // 1 de cada 3
     angle: 70,
@@ -54,7 +55,8 @@ export const PRIZES = [
     description: 'Un pan o galleta de avena recién horneado, para acompañar.',
     redeemText: 'Muestra esta pantalla en caja para tu pan o galleta.',
     icon: '🍪',
-    color: 'var(--gold)',
+    color: 'var(--terracotta)', // pan/galleta — ladrillo
+    textColor: 'var(--cream)', // rebanada oscura → texto claro
     isWin: true,
     weight: 100, // 1 de cada 3
     angle: 70,
@@ -65,7 +67,8 @@ export const PRIZES = [
     description: 'Esta vez no, ¡pero vuelve pronto a intentarlo de nuevo!',
     redeemText: '',
     icon: '🍦',
-    color: 'var(--navy-2)',
+    color: 'var(--charcoal)', // sigue participando — neutro
+    textColor: 'var(--cream)', // rebanada oscura → texto claro
     isWin: false,
     weight: 39,
     angle: 55,
@@ -76,7 +79,8 @@ export const PRIZES = [
     description: 'Una porción de nuestra crema de pistacho dulce, la favorita de la casa.',
     redeemText: 'Muestra esta pantalla en caja para tu crema de pistacho.',
     icon: '🥜',
-    color: 'var(--pistachio)',
+    color: 'var(--green-deep)', // pistacho — verde profundo
+    textColor: 'var(--cream)', // rebanada oscura → texto claro
     isWin: true,
     weight: 15, // 1 de cada 20
     angle: 60,
@@ -87,7 +91,8 @@ export const PRIZES = [
     description: 'Esta vez no, ¡pero vuelve pronto a intentarlo de nuevo!',
     redeemText: '',
     icon: '🍨',
-    color: 'var(--berry)',
+    color: 'var(--charcoal-2)', // sigue participando — neutro
+    textColor: 'var(--cream)', // rebanada oscura → texto claro
     isWin: false,
     weight: 40,
     angle: 55,
@@ -98,7 +103,8 @@ export const PRIZES = [
     description: 'Mini Copa Sorpresa — una bola de gelato del sabor del día, ¡de regalo!',
     redeemText: 'Muestra esta pantalla en caja para tu Mini Copa Sorpresa.',
     icon: '⭐',
-    color: 'var(--terracotta)',
+    color: 'var(--green)', // premio estrella — verde de marca, el más llamativo
+    textColor: 'var(--ink)', // rebanada clara → texto oscuro
     isWin: true,
     weight: 6, // 1 de cada 50
     angle: 50,

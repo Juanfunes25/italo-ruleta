@@ -1,7 +1,7 @@
 .result-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(27, 42, 65, 0.55);
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -19,7 +19,7 @@
   width: min(90vw, 560px);
   background: var(--cream);
   border-radius: 28px;
-  border: 6px solid var(--gold);
+  border: 6px solid var(--green);
   padding: clamp(1.2rem, 3vw, 2.2rem) clamp(1.4rem, 4vw, 2.6rem);
   text-align: center;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
@@ -32,11 +32,11 @@
 }
 
 .result-card--win {
-  border-color: var(--gold);
+  border-color: var(--green);
 }
 
 .result-card--again {
-  border-color: var(--navy-2);
+  border-color: var(--charcoal-2);
 }
 
 .result-icon {
@@ -46,12 +46,12 @@
 
 .result-title {
   font-size: clamp(1.5rem, 4vw, 2.3rem);
-  color: var(--terracotta-dark);
+  color: var(--green-deep);
   margin-top: 0.3em;
 }
 
 .result-card--again .result-title {
-  color: var(--navy);
+  color: var(--charcoal);
 }
 
 .result-desc {
@@ -76,11 +76,11 @@
   padding: 0.7em 2.4em;
   font-size: clamp(1rem, 2.4vw, 1.25rem);
   font-weight: 700;
-  color: var(--cream);
-  background: var(--terracotta);
+  color: var(--black);
+  background: var(--green);
   border: none;
   border-radius: 999px;
-  box-shadow: 0 6px 14px rgba(156, 69, 32, 0.4);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
 }
 
 .result-done:active {
@@ -90,6 +90,6 @@
 .result-timer {
   margin: 0.8em 0 0;
   font-size: 0.85rem;
-  color: var(--navy-2);
+  color: var(--charcoal-2);
   opacity: 0.75;
 }

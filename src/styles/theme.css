@@ -1,29 +1,36 @@
-/* Tipografías autoalojadas (@fontsource) para que funcionen 100% offline en la tablet */
-@import '@fontsource/fraunces/600.css';
-@import '@fontsource/fraunces/700.css';
-@import '@fontsource/fraunces/900.css';
-@import '@fontsource/fraunces/600-italic.css';
-@import '@fontsource/manrope/400.css';
-@import '@fontsource/manrope/600.css';
-@import '@fontsource/manrope/700.css';
-@import '@fontsource/manrope/800.css';
+/* Tipografías autoalojadas (@fontsource) para que funcionen 100% offline en la tablet.
+   Poppins es la fuente real de marca. Fredoka es un reemplazo temporal de MOHR Rounded
+   (fuente de pago que no está disponible para autoalojar) — swap fácil en cuanto Juan
+   pase los archivos .woff2 reales: solo hay que reemplazar estos imports y --font-display. */
+@import '@fontsource/poppins/400.css';
+@import '@fontsource/poppins/500.css';
+@import '@fontsource/poppins/600.css';
+@import '@fontsource/poppins/700.css';
+@import '@fontsource/fredoka/500.css';
+@import '@fontsource/fredoka/600.css';
+@import '@fontsource/fredoka/700.css';
 
 :root {
-  --cream: #FAF3E7;
-  --cream-2: #F1E4CE;
-  --terracotta: #C1592B;
-  --terracotta-dark: #9C4520;
-  --navy: #1B2A41;
-  --navy-2: #28405E;
-  --gold: #D4A64A;
-  --gold-light: #EFCE86;
-  --pistachio: #8BA888;
-  --berry: #C4667A;
-  --coffee: #6B4226;
-  --ink: #241A12;
+  /* Paleta oficial del BrandBook Ítalo: negro (predomina), verde (decora), blanco (rellena) */
+  --black: #000000;
+  --green: #C5D288;
+  --green-light: #DCE6B8;
+  --green-deep: #3E5A34;
+  --green-deepest: #17210F;
+  --white: #FFFFFF;
 
-  --font-display: 'Fraunces', 'Georgia', serif;
-  --font-ui: 'Manrope', system-ui, sans-serif;
+  /* Tonos de apoyo, tomados del local real (paredes de concreto, ladrillo, piso claro) */
+  --cream: #F4F1EA;
+  --cream-2: #E8E2CF;
+  --charcoal: #1C1C18;
+  --charcoal-2: #2B2B24;
+  --terracotta: #B5623A;
+  --coffee: #5B3A22;
+  --red: #C1272D;
+  --ink: #17170F;
+
+  --font-display: 'Fredoka', 'Poppins', system-ui, sans-serif;
+  --font-ui: 'Poppins', system-ui, sans-serif;
 }
 
 * {

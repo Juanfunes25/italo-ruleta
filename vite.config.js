@@ -36,8 +36,8 @@ export default defineConfig(({ command }) => {
           scope: '.',
           display: 'fullscreen',
           orientation: 'landscape',
-          background_color: '#FAF3E7',
-          theme_color: '#C1592B',
+          background_color: '#F4F1EA',
+          theme_color: '#000000',
           icons: [
             { src: 'pwa-192x192.png', sizes: '192x192', type: 'image/png' },
             { src: 'pwa-512x512.png', sizes: '512x512', type: 'image/png' },
