@@ -34,8 +34,9 @@ export const AUTO_RESET_SECONDS = 20
 // Segundos que tarda la animación de giro (varias vueltas completas).
 export const SPIN_DURATION_SECONDS = 5
 
-// Segundos después de mostrar el premio en que aparece la tarjeta pasiva de QR.
-export const QR_CARD_DELAY_SECONDS = 2.5
+// Segundos que se muestra la pantalla con el nombre de las 5 sucursales
+// después de que la rueda se detiene y antes de revelar el premio.
+export const BRANCHES_SCREEN_SECONDS = 4
 
 // ============================================================================
 // TABLA DE PREMIOS

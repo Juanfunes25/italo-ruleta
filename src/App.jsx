@@ -1,31 +1,32 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Wheel from './components/Wheel.jsx'
+import BranchesScreen from './components/BranchesScreen.jsx'
 import ResultCard from './components/ResultCard.jsx'
 import StaffPanel from './components/StaffPanel.jsx'
 import { useStats } from './hooks/useStats.js'
-import { AUTO_RESET_SECONDS, QR_CARD_DELAY_SECONDS } from './config/prizes.js'
+import { AUTO_RESET_SECONDS, BRANCHES_SCREEN_SECONDS } from './config/prizes.js'
 import './App.css'
 
 const TAPS_TO_OPEN_STAFF = 5
 const TAP_WINDOW_MS = 2500
 
 export default function App() {
-  const [phase, setPhase] = useState('idle') // idle | spinning | result
+  const [phase, setPhase] = useState('idle') // idle | spinning | branches | result
   const [prize, setPrize] = useState(null)
   const [secondsLeft, setSecondsLeft] = useState(AUTO_RESET_SECONDS)
-  const [showQr, setShowQr] = useState(false)
   const [staffOpen, setStaffOpen] = useState(false)
 
   const { counts, totalSpins, recordSpin, resetToday } = useStats()
 
   const tapTimesRef = useRef([])
-  const qrTimerRef = useRef(null)
+  const pendingPrizeRef = useRef(null)
+  const branchesTimerRef = useRef(null)
   const countdownRef = useRef(null)
 
   const clearTimers = useCallback(() => {
-    if (qrTimerRef.current) clearTimeout(qrTimerRef.current)
+    if (branchesTimerRef.current) clearTimeout(branchesTimerRef.current)
     if (countdownRef.current) clearInterval(countdownRef.current)
-    qrTimerRef.current = null
+    branchesTimerRef.current = null
     countdownRef.current = null
   }, [])
 
@@ -33,7 +34,7 @@ export default function App() {
     clearTimers()
     setPhase('idle')
     setPrize(null)
-    setShowQr(false)
+    pendingPrizeRef.current = null
     setSecondsLeft(AUTO_RESET_SECONDS)
   }, [clearTimers])
 
@@ -41,32 +42,41 @@ export default function App() {
     setPhase('spinning')
   }, [])
 
-  const handleResult = useCallback(
+  // La rueda ya se detuvo y sabe qué premio salió, pero primero se muestra la
+  // pantalla de sucursales unos segundos antes de revelar el premio.
+  const handleSpinDone = useCallback(
     (won) => {
       // Idempotente: si por algún motivo se dispara más de una vez para el
-      // mismo giro, nunca deben quedar dos intervalos corriendo en paralelo
-      // (eso haría que la cuenta regresiva avance el doble de rápido).
+      // mismo giro, nunca debe quedar más de un temporizador corriendo.
       clearTimers()
-      setPrize(won)
-      setPhase('result')
-      setShowQr(false)
-      setSecondsLeft(AUTO_RESET_SECONDS)
-      recordSpin(won.id)
+      pendingPrizeRef.current = won
+      setPhase('branches')
 
-      qrTimerRef.current = setTimeout(() => setShowQr(true), QR_CARD_DELAY_SECONDS * 1000)
+      branchesTimerRef.current = setTimeout(() => {
+        const revealed = pendingPrizeRef.current
+        pendingPrizeRef.current = null
+        setPrize(revealed)
+        setPhase('result')
+        setSecondsLeft(AUTO_RESET_SECONDS)
+        recordSpin(revealed.id)
 
-      countdownRef.current = setInterval(() => {
-        setSecondsLeft((s) => {
-          if (s <= 1) {
-            resetToIdle()
-            return AUTO_RESET_SECONDS
-          }
-          return s - 1
-        })
-      }, 1000)
+        // El updater de setSecondsLeft solo calcula el siguiente número — nunca
+        // debe disparar efectos secundarios (React puede invocarlo más de una
+        // vez). El reseteo a 'idle' se maneja aparte, en el useEffect de abajo.
+        countdownRef.current = setInterval(() => {
+          setSecondsLeft((s) => (s > 0 ? s - 1 : 0))
+        }, 1000)
+      }, BRANCHES_SCREEN_SECONDS * 1000)
     },
-    [clearTimers, recordSpin, resetToIdle]
+    [clearTimers, recordSpin]
   )
+
+  // Cuando la cuenta regresiva llega a 0 en la pantalla de resultado, resetea.
+  useEffect(() => {
+    if (phase === 'result' && secondsLeft === 0) {
+      resetToIdle()
+    }
+  }, [phase, secondsLeft, resetToIdle])
 
   useEffect(() => clearTimers, [clearTimers])
 
@@ -89,18 +99,24 @@ export default function App() {
           <span className="app__wordmark-gelateria">GELATERIA</span>
         </button>
         <p className="app__instruction">
-          {phase === 'idle' ? 'Toca la rueda para girar' : phase === 'spinning' ? 'Girando…' : '¡Gracias por participar!'}
+          {phase === 'idle'
+            ? 'Toca la rueda para girar'
+            : phase === 'spinning'
+              ? 'Girando…'
+              : phase === 'branches'
+                ? '¡Ya casi!'
+                : '¡Gracias por participar!'}
         </p>
         {phase === 'idle' && <p className="app__disclaimer">Participa por la compra mínima</p>}
       </aside>
 
       <main className="app__wheel-area">
-        <Wheel canSpin={phase === 'idle'} onSpinStart={handleSpinStart} onResult={handleResult} />
+        <Wheel canSpin={phase === 'idle'} onSpinStart={handleSpinStart} onResult={handleSpinDone} />
       </main>
 
-      {phase === 'result' && prize && (
-        <ResultCard prize={prize} secondsLeft={secondsLeft} showQr={showQr} onDone={resetToIdle} />
-      )}
+      {phase === 'branches' && <BranchesScreen />}
+
+      {phase === 'result' && prize && <ResultCard prize={prize} secondsLeft={secondsLeft} onDone={resetToIdle} />}
 
       {staffOpen && (
         <StaffPanel

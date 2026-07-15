@@ -2,8 +2,8 @@ import { QRCodeSVG } from 'qrcode.react'
 import { GOOGLE_REVIEW_URL, INSTAGRAM_URL } from '../config/prizes.js'
 import './ReviewQR.css'
 
-// Tarjeta pasiva y no bloqueante: aparece unos segundos después del premio,
-// el cliente puede ignorarla y la pantalla se resetea igual.
+// Tarjeta pasiva y no bloqueante: se muestra junto con el premio, el cliente
+// puede ignorarla y la pantalla se resetea igual.
 export default function ReviewQR() {
   return (
     <div className="review-qr">

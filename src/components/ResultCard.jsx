@@ -3,7 +3,7 @@ import confetti from 'canvas-confetti'
 import ReviewQR from './ReviewQR.jsx'
 import './ResultCard.css'
 
-export default function ResultCard({ prize, secondsLeft, showQr, onDone }) {
+export default function ResultCard({ prize, secondsLeft, onDone }) {
   const firedRef = useRef(false)
 
   useEffect(() => {
@@ -29,7 +29,7 @@ export default function ResultCard({ prize, secondsLeft, showQr, onDone }) {
           Listo
         </button>
         <p className="result-timer">Esta pantalla se reinicia en {secondsLeft}s…</p>
-        {showQr && <ReviewQR />}
+        <ReviewQR />
       </div>
     </div>
   )
