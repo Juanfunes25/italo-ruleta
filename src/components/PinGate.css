@@ -1,89 +1,47 @@
-.pin-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.65);
+.pin-inline {
+  margin-top: 0.6rem;
   display: flex;
   align-items: center;
-  justify-content: center;
-  z-index: 40;
+  gap: 0.5em;
 }
 
-.pin-card {
-  width: min(90vw, 380px);
-  background: var(--cream);
-  border-radius: 24px;
-  border: 4px solid var(--green);
-  padding: 1.6rem 1.8rem;
-  text-align: center;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
-}
-
-.pin-card__eyebrow {
-  margin: 0;
-  font-size: 0.72rem;
-  font-weight: 700;
+.pin-inline__label {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 0.62rem;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--green-deep);
+  letter-spacing: 0.08em;
+  color: var(--cream-2);
+  opacity: 0.75;
 }
 
-.pin-card__title {
-  margin: 0.3em 0 0.9em;
-  font-size: 1.3rem;
-  color: var(--charcoal);
-}
-
-.pin-card__input {
-  width: 100%;
+.pin-inline__input {
+  width: 4.2em;
   box-sizing: border-box;
   font-family: var(--font-ui);
-  font-size: 1.6rem;
+  font-size: 0.85rem;
   text-align: center;
-  letter-spacing: 0.6em;
-  padding: 0.5em 0.4em;
-  border-radius: 12px;
-  border: 2px solid var(--cream-2);
-  background: var(--white);
-  color: var(--ink);
+  letter-spacing: 0.4em;
+  padding: 0.3em 0.2em;
+  border-radius: 8px;
+  border: 1.5px solid rgba(244, 241, 234, 0.35);
+  background: rgba(244, 241, 234, 0.08);
+  color: var(--cream);
 }
 
-.pin-card__input:focus {
+.pin-inline__input:focus {
   outline: none;
   border-color: var(--green);
+  background: rgba(244, 241, 234, 0.14);
 }
 
-.pin-card__input--error {
+.pin-inline__input--shake {
   border-color: var(--red);
+  animation: pin-shake 0.35s ease;
 }
 
-.pin-card__error {
-  margin: 0.6em 0 0;
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--red);
-}
-
-.pin-card__actions {
-  display: flex;
-  gap: 0.6em;
-  margin-top: 1.2em;
-}
-
-.pin-card__btn {
-  flex: 1;
-  border: none;
-  border-radius: 999px;
-  padding: 0.65em 1em;
-  font-weight: 700;
-  font-size: 0.95rem;
-}
-
-.pin-card__btn--secondary {
-  background: var(--cream-2);
-  color: var(--charcoal);
-}
-
-.pin-card__btn--primary {
-  background: var(--green);
-  color: var(--black);
+@keyframes pin-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
 }

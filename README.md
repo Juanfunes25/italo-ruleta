@@ -74,18 +74,31 @@ No hace falta tocar ningún otro archivo para estos cambios.
 ## Código de staff antes de girar
 
 Para que un mismo cliente no pueda girar varias veces seguidas sin autorización,
-cada giro pide un código corto (por defecto `abc`, editable en `STAFF_PIN` dentro
-de [`src/config/prizes.js`](src/config/prizes.js)). El cliente toca la rueda, y en
-vez de girar aparece un cuadro pidiendo el código — lo ingresa el cajero después de
-cobrar la compra mínima. Se pide de nuevo en cada giro, nunca queda "desbloqueado".
+hay un campo chico bajo el aviso de "Participa por la compra mínima" que pide un
+código de 3 caracteres (por defecto `abc`, editable en `STAFF_PIN` dentro de
+[`src/config/prizes.js`](src/config/prizes.js)). Lo ingresa el cajero después de
+cobrar la compra mínima — el giro arranca solo, apenas el código es correcto (no
+hace falta tocar la rueda). Si es incorrecto, el campo tiembla y se limpia. Se pide
+de nuevo en cada giro, nunca queda "desbloqueado".
+
+## Premios ganados en el tiempo
+
+El botón 🏆 en la esquina superior izquierda (siempre visible) abre un historial de
+todos los premios ganados desde que se instaló la app — no solo el día de hoy. Sirve
+para llevar un control simple de cuánto se ha entregado. Incluye desglose por premio,
+los últimos 30 giros ganadores con fecha y hora, exportar a CSV y un botón para
+borrar el historial. Vive en `localStorage` (guarda hasta 1000 premios, para que no
+crezca sin límite en una tablet que queda prendida meses).
 
 ## Panel de staff (oculto)
 
 Toca el wordmark **"Ítalo"** (columna izquierda) **5 veces seguidas** para abrir un
-panel con: giros del día, cuántos de cada premio han salido, botón para reiniciar
-el contador y botón **"Exportar CSV"**. Invisible para un cliente casual, sin PIN
-(la única protección es el gesto secreto), datos guardados solo en `localStorage`
-de esa tablet — no hay backend ni sincronización entre sucursales.
+panel con: giros del día (ganados y no ganados), cuántos de cada premio han salido,
+botón para reiniciar el contador y botón **"Exportar CSV"**. Se reinicia cada día —
+para ver el total histórico de premios ganados, usa el botón 🏆 de arriba. Invisible
+para un cliente casual (la única protección es el gesto secreto), datos guardados
+solo en `localStorage` de esa tablet — no hay backend ni sincronización entre
+sucursales.
 
 ## Estructura
 
@@ -94,12 +107,15 @@ src/
 ├─ config/prizes.js     Único archivo a editar: premios, pesos, ángulos, links, tiempos
 ├─ components/
 │  ├─ Wheel.jsx          Rueda SVG + anillo tipo barquillo + animación de giro
-│  ├─ PinGate.jsx        Código de staff que se pide antes de cada giro
+│  ├─ PinGate.jsx        Campo chico de código de staff, bajo el aviso
 │  ├─ BranchesScreen.jsx Pantalla con las 5 sucursales antes de revelar el premio
 │  ├─ ResultCard.jsx     Tarjeta de premio + confeti + cuenta regresiva
 │  ├─ ReviewQR.jsx        QR de reseña/Instagram, junto con el premio
-│  └─ StaffPanel.jsx     Panel oculto de estadísticas
-├─ hooks/useStats.js     Contador local en localStorage (por día)
+│  ├─ StaffPanel.jsx     Panel oculto de estadísticas del día
+│  └─ HistoryPanel.jsx   Historial de premios ganados (botón 🏆, todo el tiempo)
+├─ hooks/
+│  ├─ useStats.js        Contador local en localStorage (por día)
+│  └─ useWinHistory.js   Historial de premios ganados en localStorage (todo el tiempo)
 ├─ utils/prizeSelection.js  Sorteo ponderado + geometría de la rueda (sin React, testeable)
 └─ styles/theme.css      Paleta y tipografía de marca (Poppins, autoalojada)
 ```

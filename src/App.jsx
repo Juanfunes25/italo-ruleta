@@ -3,8 +3,10 @@ import Wheel from './components/Wheel.jsx'
 import BranchesScreen from './components/BranchesScreen.jsx'
 import ResultCard from './components/ResultCard.jsx'
 import StaffPanel from './components/StaffPanel.jsx'
+import HistoryPanel from './components/HistoryPanel.jsx'
 import PinGate from './components/PinGate.jsx'
 import { useStats } from './hooks/useStats.js'
+import { useWinHistory } from './hooks/useWinHistory.js'
 import { AUTO_RESET_SECONDS, BRANCHES_SCREEN_SECONDS } from './config/prizes.js'
 import './App.css'
 
@@ -16,10 +18,11 @@ export default function App() {
   const [prize, setPrize] = useState(null)
   const [secondsLeft, setSecondsLeft] = useState(AUTO_RESET_SECONDS)
   const [staffOpen, setStaffOpen] = useState(false)
-  const [pinOpen, setPinOpen] = useState(false)
+  const [historyOpen, setHistoryOpen] = useState(false)
   const [spinRequest, setSpinRequest] = useState(0)
 
   const { counts, totalSpins, recordSpin, resetToday } = useStats()
+  const { entries: winHistory, recordWin, resetHistory } = useWinHistory()
 
   const tapTimesRef = useRef([])
   const pendingPrizeRef = useRef(null)
@@ -62,6 +65,7 @@ export default function App() {
         setPhase('result')
         setSecondsLeft(AUTO_RESET_SECONDS)
         recordSpin(revealed.id)
+        if (revealed.isWin) recordWin(revealed)
 
         // El updater de setSecondsLeft solo calcula el siguiente número — nunca
         // debe disparar efectos secundarios (React puede invocarlo más de una
@@ -71,7 +75,7 @@ export default function App() {
         }, 1000)
       }, BRANCHES_SCREEN_SECONDS * 1000)
     },
-    [clearTimers, recordSpin]
+    [clearTimers, recordSpin, recordWin]
   )
 
   // Cuando la cuenta regresiva llega a 0 en la pantalla de resultado, resetea.
@@ -92,21 +96,22 @@ export default function App() {
     }
   }
 
-  const handleLockedTap = useCallback(() => {
-    setPinOpen(true)
-  }, [])
-
   const handlePinSuccess = useCallback(() => {
-    setPinOpen(false)
     setSpinRequest((n) => n + 1)
-  }, [])
-
-  const handlePinCancel = useCallback(() => {
-    setPinOpen(false)
   }, [])
 
   return (
     <div className="app">
+      <button
+        type="button"
+        className="app__history-btn"
+        onClick={() => setHistoryOpen(true)}
+        aria-label="Ver premios ganados en el tiempo"
+        title="Premios ganados"
+      >
+        🏆
+      </button>
+
       <aside className="app__brand">
         <button type="button" className="app__wordmark" onClick={handleWordmarkTap} aria-label="Ítalo Gelateria">
           <span className="app__wordmark-italo">
@@ -124,9 +129,12 @@ export default function App() {
                 : '¡Gracias por participar!'}
         </p>
         {phase === 'idle' && (
-          <p className="app__disclaimer">
-            Participa por la compra mínima. ¡Una sola participación por factura! Restricciones aplican.
-          </p>
+          <>
+            <p className="app__disclaimer">
+              Participa por la compra mínima. ¡Una sola participación por factura! Restricciones aplican.
+            </p>
+            <PinGate onSuccess={handlePinSuccess} />
+          </>
         )}
       </aside>
 
@@ -134,7 +142,6 @@ export default function App() {
         <Wheel
           canSpin={phase === 'idle'}
           locked={phase === 'idle'}
-          onLockedTap={handleLockedTap}
           spinRequest={spinRequest}
           onSpinStart={handleSpinStart}
           onResult={handleSpinDone}
@@ -145,8 +152,6 @@ export default function App() {
 
       {phase === 'result' && prize && <ResultCard prize={prize} secondsLeft={secondsLeft} onDone={resetToIdle} />}
 
-      {pinOpen && <PinGate onSuccess={handlePinSuccess} onCancel={handlePinCancel} />}
-
       {staffOpen && (
         <StaffPanel
           counts={counts}
@@ -154,6 +159,10 @@ export default function App() {
           onReset={resetToday}
           onClose={() => setStaffOpen(false)}
         />
+      )}
+
+      {historyOpen && (
+        <HistoryPanel entries={winHistory} onReset={resetHistory} onClose={() => setHistoryOpen(false)} />
       )}
     </div>
   )
