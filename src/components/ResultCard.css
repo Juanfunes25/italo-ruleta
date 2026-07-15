@@ -60,16 +60,6 @@
   color: var(--ink);
 }
 
-.result-redeem {
-  margin: 0.9em auto 0;
-  font-weight: 700;
-  color: var(--coffee);
-  background: var(--cream-2);
-  border-radius: 999px;
-  padding: 0.5em 1.1em;
-  display: inline-block;
-}
-
 .result-done {
   display: block;
   margin: 1.4em auto 0;

@@ -91,6 +91,7 @@ export default function App() {
         <p className="app__instruction">
           {phase === 'idle' ? 'Toca la rueda para girar' : phase === 'spinning' ? 'Girando…' : '¡Gracias por participar!'}
         </p>
+        {phase === 'idle' && <p className="app__disclaimer">Participa por la compra mínima</p>}
       </aside>
 
       <main className="app__wheel-area">

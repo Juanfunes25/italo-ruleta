@@ -7,7 +7,7 @@
 // CÓMO FUNCIONA EL SISTEMA DE DOS CAPAS:
 //   1. "weight" (peso) → determina la PROBABILIDAD REAL de ganar ese premio.
 //      Es un sorteo ponderado sobre la suma total de todos los pesos.
-//      Ej: si un premio tiene weight 100 sobre un total de 300, tiene 1/3 de
+//      Ej: si un premio tiene weight 100 sobre un total de 600, tiene 1/6 de
 //      probabilidad real de salir, sin importar qué tan grande se vea en la rueda.
 //   2. "angle" (ángulo visual) → determina qué tan GRANDE se dibuja la rebanada
 //      en la rueda. Se usa SOLO para que los premios raros (peso bajo) sigan
@@ -40,23 +40,17 @@ export const QR_CARD_DELAY_SECONDS = 2.5
 // ============================================================================
 // TABLA DE PREMIOS
 // ============================================================================
-// Instrucción de canje: se muestra en la tarjeta de resultado para todo premio
-// ganador. Recuerda la condición de participación (compra mínima) en vez de
-// dar una instrucción de canje en caja.
-const REDEEM_TEXT = 'Participa por la compra mínima.'
-
 export const PRIZES = [
   {
     id: 'cafe',
     label: 'Café de la casa',
     wheelLabel: 'Café', // texto corto que se muestra EN la rueda (el label completo se ve en la tarjeta de resultado)
     description: 'Un café preparado por nuestro barista, cortesía de Ítalo.',
-    redeemText: REDEEM_TEXT,
     icon: '☕',
     color: 'var(--coffee)', // café — marrón
     textColor: 'var(--cream)', // rebanada oscura → texto claro
     isWin: true,
-    weight: 100, // 1 de cada 3
+    weight: 100, // 1 de cada 6
     angle: 60,
   },
   {
@@ -64,12 +58,11 @@ export const PRIZES = [
     label: 'Pan o galleta de avena',
     wheelLabel: 'Pan/Galleta',
     description: 'Un pan o galleta de avena recién horneado, para acompañar.',
-    redeemText: REDEEM_TEXT,
     icon: '🍪',
     color: 'var(--terracotta)', // pan/galleta — ladrillo
     textColor: 'var(--cream)', // rebanada oscura → texto claro
     isWin: true,
-    weight: 60, // 1 de cada 5
+    weight: 60, // 1 de cada 10
     angle: 60,
   },
   {
@@ -77,12 +70,11 @@ export const PRIZES = [
     label: 'Sigue participando',
     wheelLabel: '¡Suerte!',
     description: 'Esta vez no, ¡pero vuelve pronto a intentarlo de nuevo!',
-    redeemText: '',
     icon: '🍦',
     color: 'var(--charcoal)', // sigue participando — neutro
     textColor: 'var(--cream)', // rebanada oscura → texto claro
     isWin: false,
-    weight: 17,
+    weight: 317,
     angle: 55,
   },
   {
@@ -90,12 +82,11 @@ export const PRIZES = [
     label: 'Topping de pistacho gratis',
     wheelLabel: 'Topping',
     description: 'Un topping de pistacho gratis para tu gelato.',
-    redeemText: REDEEM_TEXT,
     icon: '🥜',
     color: 'var(--green-deep)', // topping de pistacho — verde profundo
     textColor: 'var(--cream)', // rebanada oscura → texto claro
     isWin: true,
-    weight: 60, // 1 de cada 5
+    weight: 60, // 1 de cada 10
     angle: 60,
   },
   {
@@ -103,25 +94,23 @@ export const PRIZES = [
     label: 'Agranda tu copa gratis',
     wheelLabel: 'Agranda',
     description: 'Sube de tamaño tu copa sin costo extra.',
-    redeemText: REDEEM_TEXT,
     icon: '🍨',
     color: 'var(--charcoal-2)', // agranda tu copa — neutro
     textColor: 'var(--cream)', // rebanada oscura → texto claro
     isWin: true,
-    weight: 60, // 1 de cada 5
+    weight: 60, // 1 de cada 10
     angle: 60,
   },
   {
     id: 'estrella',
-    label: 'Premio Estrella',
-    wheelLabel: 'Estrella',
+    label: 'Crema de pistacho',
+    wheelLabel: 'Pistacho',
     description: 'Una porción de nuestra crema de pistacho dulce, la favorita de la casa.',
-    redeemText: REDEEM_TEXT,
     icon: '⭐',
-    color: 'var(--green)', // premio estrella — verde de marca, el más llamativo
+    color: 'var(--green)', // el premio más raro — verde de marca, el más llamativo
     textColor: 'var(--ink)', // rebanada clara → texto oscuro
     isWin: true,
-    weight: 3, // 1 de cada 100
+    weight: 3, // 1 de cada 200
     angle: 65,
   },
 ]

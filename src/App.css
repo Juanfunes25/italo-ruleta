@@ -83,6 +83,18 @@
   opacity: 0.92;
 }
 
+.app__disclaimer {
+  margin-top: 0.9rem;
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: clamp(0.8rem, 1.5vw, 1rem);
+  color: var(--charcoal);
+  background: var(--green);
+  border-radius: 999px;
+  padding: 0.4em 0.9em;
+}
+
 .app__wheel-area {
   flex: 1;
   height: 100%;

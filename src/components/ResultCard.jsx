@@ -25,7 +25,6 @@ export default function ResultCard({ prize, secondsLeft, showQr, onDone }) {
         <div className="result-icon">{prize.icon}</div>
         <h2 className="result-title">{prize.isWin ? prize.label : '¡Sigue participando!'}</h2>
         <p className="result-desc">{prize.description}</p>
-        {prize.isWin && <p className="result-redeem">{prize.redeemText}</p>}
         <button type="button" className="result-done" onClick={onDone}>
           Listo
         </button>
