@@ -41,7 +41,7 @@ function waferTriangle(index) {
 
 const sliceRanges = getSliceRanges()
 
-export default function Wheel({ canSpin, locked, onLockedTap, spinRequest = 0, onSpinStart, onResult }) {
+export default function Wheel({ canSpin, locked, spinRequest = 0, onSpinStart, onResult }) {
   const [rotation, setRotation] = useState(0)
   const [spinning, setSpinning] = useState(false)
   const pendingPrizeRef = useRef(null)
@@ -102,14 +102,6 @@ export default function Wheel({ canSpin, locked, onLockedTap, spinRequest = 0, o
       handleSpin()
     }
   }, [spinRequest, handleSpin])
-
-  const handleHubClick = useCallback(() => {
-    if (locked) {
-      onLockedTap?.()
-      return
-    }
-    handleSpin()
-  }, [locked, onLockedTap, handleSpin])
 
   return (
     <div className="wheel-stage">
@@ -192,10 +184,10 @@ export default function Wheel({ canSpin, locked, onLockedTap, spinRequest = 0, o
 
         <button
           type="button"
-          className={`wheel-hub ${!canSpin || spinning ? 'wheel-hub--disabled' : ''}`}
+          className={`wheel-hub ${locked || !canSpin || spinning ? 'wheel-hub--disabled' : ''}`}
           style={{ width: `${((HUB_RADIUS * 2) / SIZE) * 100}%`, height: `${((HUB_RADIUS * 2) / SIZE) * 100}%` }}
-          onClick={handleHubClick}
-          disabled={!canSpin || spinning}
+          onClick={handleSpin}
+          disabled={locked || !canSpin || spinning}
           aria-label="Girar la ruleta de premios"
         >
           {spinning ? '...' : 'Gira'}

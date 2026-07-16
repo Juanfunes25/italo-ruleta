@@ -1,38 +1,44 @@
 .pin-inline {
-  margin-top: 0.6rem;
+  margin-top: 1rem;
   display: flex;
-  align-items: center;
-  gap: 0.5em;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4em;
+  padding: 0.7em 0.9em;
+  border-radius: 14px;
+  border: 1.5px solid rgba(197, 210, 136, 0.3);
+  background: rgba(244, 241, 234, 0.06);
 }
 
 .pin-inline__label {
   font-family: var(--font-ui);
-  font-weight: 600;
-  font-size: 0.62rem;
+  font-weight: 700;
+  font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--cream-2);
-  opacity: 0.75;
+  color: var(--green);
+  opacity: 0.9;
 }
 
 .pin-inline__input {
-  width: 4.2em;
+  width: 6em;
   box-sizing: border-box;
   font-family: var(--font-ui);
-  font-size: 0.85rem;
+  font-weight: 700;
+  font-size: 1.35rem;
   text-align: center;
-  letter-spacing: 0.4em;
-  padding: 0.3em 0.2em;
-  border-radius: 8px;
-  border: 1.5px solid rgba(244, 241, 234, 0.35);
-  background: rgba(244, 241, 234, 0.08);
+  letter-spacing: 0.5em;
+  padding: 0.35em 0.2em 0.35em 0.45em;
+  border-radius: 10px;
+  border: 2px solid var(--green);
+  background: rgba(244, 241, 234, 0.12);
   color: var(--cream);
 }
 
 .pin-inline__input:focus {
   outline: none;
-  border-color: var(--green);
-  background: rgba(244, 241, 234, 0.14);
+  border-color: var(--green-light);
+  background: rgba(244, 241, 234, 0.2);
 }
 
 .pin-inline__input--shake {
@@ -42,6 +48,6 @@
 
 @keyframes pin-shake {
   0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-4px); }
-  75% { transform: translateX(4px); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
 }

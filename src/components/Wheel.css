@@ -67,6 +67,7 @@
 }
 
 .wheel-hub--disabled {
-  filter: grayscale(0.35) brightness(0.85);
+  filter: grayscale(0.8) brightness(0.75);
+  opacity: 0.85;
   cursor: default;
 }

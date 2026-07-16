@@ -7,7 +7,7 @@
 // CÓMO FUNCIONA EL SISTEMA DE DOS CAPAS:
 //   1. "weight" (peso) → determina la PROBABILIDAD REAL de ganar ese premio.
 //      Es un sorteo ponderado sobre la suma total de todos los pesos.
-//      Ej: si un premio tiene weight 100 sobre un total de 1200, tiene 1/12 de
+//      Ej: si un premio tiene weight 400 sobre un total de 2800, tiene 1/7 de
 //      probabilidad real de salir, sin importar qué tan grande se vea en la rueda.
 //   2. "angle" (ángulo visual) → determina qué tan GRANDE se dibuja la rebanada
 //      en la rueda. Se usa SOLO para que los premios raros (peso bajo) sigan
@@ -55,7 +55,7 @@ export const PRIZES = [
     color: 'var(--coffee)', // café — marrón
     textColor: 'var(--cream)', // rebanada oscura → texto claro
     isWin: true,
-    weight: 100, // 1 de cada 12
+    weight: 400, // 1 de cada 7
     angle: 60,
   },
   {
@@ -67,7 +67,7 @@ export const PRIZES = [
     color: 'var(--terracotta)', // pan/galleta — ladrillo
     textColor: 'var(--cream)', // rebanada oscura → texto claro
     isWin: true,
-    weight: 60, // 1 de cada 20
+    weight: 140, // 1 de cada 20
     angle: 60,
   },
   {
@@ -79,7 +79,7 @@ export const PRIZES = [
     color: 'var(--charcoal)', // sigue participando — neutro
     textColor: 'var(--cream)', // rebanada oscura → texto claro
     isWin: false,
-    weight: 917,
+    weight: 1973,
     angle: 55,
   },
   {
@@ -91,7 +91,7 @@ export const PRIZES = [
     color: 'var(--green-deep)', // topping de pistacho — verde profundo
     textColor: 'var(--cream)', // rebanada oscura → texto claro
     isWin: true,
-    weight: 60, // 1 de cada 20
+    weight: 140, // 1 de cada 20
     angle: 60,
   },
   {
@@ -103,7 +103,7 @@ export const PRIZES = [
     color: 'var(--charcoal-2)', // agranda tu copa — neutro
     textColor: 'var(--cream)', // rebanada oscura → texto claro
     isWin: true,
-    weight: 60, // 1 de cada 20
+    weight: 140, // 1 de cada 20
     angle: 60,
   },
   {
@@ -115,7 +115,7 @@ export const PRIZES = [
     color: 'var(--green)', // el premio más raro — verde de marca, el más llamativo
     textColor: 'var(--ink)', // rebanada clara → texto oscuro
     isWin: true,
-    weight: 3, // 1 de cada 400
+    weight: 7, // 1 de cada 400
     angle: 65,
   },
 ]
