@@ -66,20 +66,22 @@ Todo vive en un único archivo: [`src/config/prizes.js`](src/config/prizes.js).
   tus links reales (se muestran junto con el premio al revelarlo).
 - **`AUTO_RESET_SECONDS`**, **`SPIN_DURATION_SECONDS`**, **`BRANCHES_SCREEN_SECONDS`**:
   tiempos de la animación, la pantalla de sucursales y el reseteo automático.
-- **`STAFF_PIN`**: el código de 3 caracteres que el staff debe ingresar antes de
-  cada giro (ver siguiente sección).
+- **`STAFF_PIN`**: el PIN numérico de 3 dígitos que el staff debe ingresar antes
+  de cada giro (ver siguiente sección).
 
 No hace falta tocar ningún otro archivo para estos cambios.
 
-## Código de staff antes de girar
+## PIN de staff antes de girar
 
 Para que un mismo cliente no pueda girar varias veces seguidas sin autorización,
-hay un campo chico bajo el aviso de "Participa por la compra mínima" que pide un
-código de 3 caracteres (por defecto `abc`, editable en `STAFF_PIN` dentro de
-[`src/config/prizes.js`](src/config/prizes.js)). Lo ingresa el cajero después de
-cobrar la compra mínima — el giro arranca solo, apenas el código es correcto (no
-hace falta tocar la rueda). Si es incorrecto, el campo tiembla y se limpia. Se pide
-de nuevo en cada giro, nunca queda "desbloqueado".
+hay un campo bajo el aviso de "Participa por la compra mínima" que pide un PIN
+numérico de 3 dígitos (por defecto `473`, editable en `STAFF_PIN` dentro de
+[`src/config/prizes.js`](src/config/prizes.js) — evita secuencias obvias como
+`123` o `000`). Lo ingresa el cajero después de cobrar la compra mínima — el
+teclado de la tablet abre en modo numérico, y el giro arranca solo apenas el PIN
+es correcto (no hace falta tocar la rueda, que se ve deshabilitada hasta ese
+momento). Si es incorrecto, el campo tiembla y se limpia. Se pide de nuevo en
+cada giro, nunca queda "desbloqueado".
 
 ## Premios ganados en el tiempo
 
