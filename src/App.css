@@ -127,3 +127,43 @@
 .app__history-btn:active {
   transform: scale(0.95);
 }
+
+/* Algunas tablets quedan montadas en vertical en vez de 16:9 horizontal —
+   en ese caso la columna de marca pasa a ser una franja arriba en vez de
+   una columna a la izquierda, para que la rueda tenga espacio real. */
+@media (orientation: portrait) {
+  .app {
+    flex-direction: column;
+  }
+
+  .app__brand {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    align-items: center;
+    text-align: center;
+    padding: 3vh 6%;
+    gap: 0.5rem;
+  }
+
+  .app__wordmark {
+    align-items: center;
+  }
+
+  .app__instruction {
+    margin-top: 0.8rem;
+  }
+
+  .app__disclaimer {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .app__wheel-area {
+    flex: 1;
+    width: 100%;
+    height: auto;
+    padding: 2vh 4vw 4vh;
+  }
+}

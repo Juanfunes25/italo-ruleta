@@ -7,6 +7,15 @@
   justify-content: center;
 }
 
+/* En vertical la columna de marca es una franja arriba, así que el ancho ya
+   no está apretado por ella — la rueda puede usar casi todo el ancho, y el
+   límite pasa a ser el alto que queda debajo de esa franja. */
+@media (orientation: portrait) {
+  .wheel-stage {
+    width: min(100%, 60vh, 88vw);
+  }
+}
+
 .wheel-pointer {
   position: absolute;
   top: -1%;

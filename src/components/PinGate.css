@@ -51,3 +51,9 @@
   25% { transform: translateX(-5px); }
   75% { transform: translateX(5px); }
 }
+
+@media (orientation: portrait) {
+  .pin-inline {
+    align-items: center;
+  }
+}
