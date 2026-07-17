@@ -15,6 +15,14 @@ export default defineConfig(({ command }) => {
   return {
     base,
     server: { port: 3300, host: true }, // host:true => accesible desde la tablet por IP
+    build: {
+      // Muchas tablets comerciales genéricas traen un Android/WebView viejo
+      // que no entiende sintaxis moderna (?., ??, ??=). Bajamos el target
+      // para que esbuild la transforme a algo compatible — si no, la página
+      // queda en blanco sin ningún error visible (el script ni siquiera
+      // llega a ejecutarse).
+      target: 'es2015',
+    },
     plugins: [
       react(),
       VitePWA({
