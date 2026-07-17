@@ -1,6 +1,6 @@
 .wheel-stage {
   position: relative;
-  width: min(100%, 78vh, 62vw);
+  width: min(100%, 98vh, 80vw);
   aspect-ratio: 1 / 1;
   display: flex;
   align-items: center;
@@ -12,7 +12,7 @@
    límite pasa a ser el alto que queda debajo de esa franja. */
 @media (orientation: portrait) {
   .wheel-stage {
-    width: min(100%, 60vh, 88vw);
+    width: min(100%, 98vh, 99vw);
   }
 }
 

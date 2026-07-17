@@ -38,10 +38,9 @@ export const SPIN_DURATION_SECONDS = 5
 // después de que la rueda se detiene y antes de revelar el premio.
 export const BRANCHES_SCREEN_SECONDS = 4
 
-// PIN numérico de 3 dígitos que el staff debe ingresar antes de cada giro
-// (evita que un mismo cliente gire varias veces seguidas sin autorización).
-// Evita secuencias obvias (123, 000, 111) — cámbialo cuando quieras.
-export const STAFF_PIN = '473'
+// Código que el staff debe ingresar antes de cada giro (evita que un mismo
+// cliente gire varias veces seguidas sin autorización). Cámbialo cuando quieras.
+export const STAFF_PIN = 'h'
 
 // ============================================================================
 // TABLA DE PREMIOS

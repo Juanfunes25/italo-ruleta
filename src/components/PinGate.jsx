@@ -12,11 +12,11 @@ export default function PinGate({ onSuccess }) {
   const inputRef = useRef(null)
 
   const handleChange = (event) => {
-    const next = event.target.value.replace(/\D/g, '') // solo dígitos
+    const next = event.target.value
     setValue(next)
     if (next.length < STAFF_PIN.length) return
 
-    if (next === STAFF_PIN) {
+    if (next.toLowerCase() === STAFF_PIN.toLowerCase()) {
       setValue('')
       onSuccess()
       return
@@ -29,20 +29,20 @@ export default function PinGate({ onSuccess }) {
   return (
     <div className="pin-inline">
       <label className="pin-inline__label" htmlFor="staff-pin-input">
-        PIN staff
+        Código staff
       </label>
       <input
         id="staff-pin-input"
         ref={inputRef}
         type="password"
-        inputMode="numeric"
-        pattern="[0-9]*"
-        maxLength={STAFF_PIN.length}
+        inputMode="text"
         autoComplete="off"
+        autoCapitalize="off"
+        maxLength={STAFF_PIN.length}
         className={`pin-inline__input ${shake ? 'pin-inline__input--shake' : ''}`}
         value={value}
         onChange={handleChange}
-        aria-label="PIN de staff para autorizar el giro"
+        aria-label="Código de staff para autorizar el giro"
       />
     </div>
   )
