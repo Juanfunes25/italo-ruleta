@@ -1,19 +1,18 @@
+/* Cuadrado responsivo SIN usar aspect-ratio ni min() — varias tablets viejas
+   no soportan esas propiedades modernas y las ignoran por completo, dejando
+   la rueda diminuta sin importar qué valores se le pongan. Este truco del
+   "padding-top: 100%" funciona en cualquier navegador, hasta los más viejos. */
 .wheel-stage {
   position: relative;
-  width: min(100%, 98vh, 80vw);
-  aspect-ratio: 1 / 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 96%;
+  max-width: 92vh;
+  margin: 0 auto;
 }
 
-/* En vertical la columna de marca es una franja arriba, así que el ancho ya
-   no está apretado por ella — la rueda puede usar casi todo el ancho, y el
-   límite pasa a ser el alto que queda debajo de esa franja. */
-@media (orientation: portrait) {
-  .wheel-stage {
-    width: min(100%, 98vh, 99vw);
-  }
+.wheel-stage::before {
+  content: '';
+  display: block;
+  padding-top: 100%;
 }
 
 .wheel-pointer {
@@ -31,13 +30,12 @@
 }
 
 .wheel-frame {
-  position: relative;
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3), inset 0 0 0 10px var(--cream-2);
 }
 
@@ -58,13 +56,18 @@
 
 .wheel-hub {
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 25%;
+  height: 25%;
   border-radius: 50%;
   border: 5px solid var(--black);
   background: radial-gradient(circle at 38% 32%, var(--green-light) 0%, var(--green) 75%);
   color: var(--black);
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(1.1rem, 2.6vw, 1.9rem);
+  font-size: 6vmin;
   letter-spacing: 0.02em;
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35), inset 0 2px 4px rgba(255, 255, 255, 0.25);
   transition: transform 0.15s ease, filter 0.2s ease;
@@ -72,7 +75,7 @@
 }
 
 .wheel-hub:active:not(.wheel-hub--disabled) {
-  transform: scale(0.96);
+  transform: translate(-50%, -50%) scale(0.96);
 }
 
 .wheel-hub--disabled {

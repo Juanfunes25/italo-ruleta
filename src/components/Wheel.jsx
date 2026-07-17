@@ -9,7 +9,6 @@ const CENTER = SIZE / 2
 const WHEEL_RADIUS = 250
 const LABEL_RADIUS = 118
 const ICON_RADIUS = 198
-const HUB_RADIUS = 78
 const WAFER_INNER = 258
 const WAFER_OUTER = 300
 const WAFER_COUNT = 48
@@ -174,7 +173,6 @@ export default function Wheel({ canSpin, locked, onSpinStart, onResult }) {
         <button
           type="button"
           className={`wheel-hub ${locked || !canSpin || spinning ? 'wheel-hub--disabled' : ''}`}
-          style={{ width: `${((HUB_RADIUS * 2) / SIZE) * 100}%`, height: `${((HUB_RADIUS * 2) / SIZE) * 100}%` }}
           onClick={handleSpin}
           disabled={locked || !canSpin || spinning}
           aria-label="Girar la ruleta de premios"
