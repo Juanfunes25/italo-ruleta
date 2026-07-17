@@ -43,7 +43,7 @@ export default defineConfig(({ command }) => {
           start_url: '.',
           scope: '.',
           display: 'fullscreen',
-          orientation: 'landscape',
+          orientation: 'any', // hay tablets montadas en horizontal y otras en vertical — que siga la orientación real
           background_color: '#F4F1EA',
           theme_color: '#000000',
           icons: [
