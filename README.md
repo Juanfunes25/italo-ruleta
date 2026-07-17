@@ -78,10 +78,11 @@ hay un campo bajo el aviso de "Participa por la compra mínima" que pide un PIN
 numérico de 3 dígitos (por defecto `473`, editable en `STAFF_PIN` dentro de
 [`src/config/prizes.js`](src/config/prizes.js) — evita secuencias obvias como
 `123` o `000`). Lo ingresa el cajero después de cobrar la compra mínima — el
-teclado de la tablet abre en modo numérico, y el giro arranca solo apenas el PIN
-es correcto (no hace falta tocar la rueda, que se ve deshabilitada hasta ese
-momento). Si es incorrecto, el campo tiembla y se limpia. Se pide de nuevo en
-cada giro, nunca queda "desbloqueado".
+teclado de la tablet abre en modo numérico. Es un flujo de dos pasos: el PIN
+correcto solo **desbloquea** la rueda (deja de verse deshabilitada y el campo
+de PIN desaparece) — recién ahí el cliente toca "Gira" para girar. Si el PIN es
+incorrecto, el campo tiembla y se limpia. Se vuelve a pedir en cada giro, nunca
+queda "desbloqueado" para el siguiente cliente.
 
 ## Premios ganados en el tiempo
 

@@ -41,13 +41,12 @@ function waferTriangle(index) {
 
 const sliceRanges = getSliceRanges()
 
-export default function Wheel({ canSpin, locked, spinRequest = 0, onSpinStart, onResult }) {
+export default function Wheel({ canSpin, locked, onSpinStart, onResult }) {
   const [rotation, setRotation] = useState(0)
   const [spinning, setSpinning] = useState(false)
   const pendingPrizeRef = useRef(null)
   const settledRef = useRef(true)
   const settleTimerRef = useRef(null)
-  const lastSpinRequestRef = useRef(spinRequest)
 
   // Resuelve el giro una sola vez, ya sea por transitionend (caso normal) o
   // por el timer de respaldo (si el navegador de la tablet no dispara el
@@ -92,16 +91,6 @@ export default function Wheel({ canSpin, locked, spinRequest = 0, onSpinStart, o
     },
     [finishSpin]
   )
-
-  // El código de staff (PinGate, en App.jsx) autoriza el giro incrementando
-  // spinRequest — cuando cambia, se arranca el giro sin necesidad de un
-  // segundo toque en el hub.
-  useEffect(() => {
-    if (spinRequest !== lastSpinRequestRef.current) {
-      lastSpinRequestRef.current = spinRequest
-      handleSpin()
-    }
-  }, [spinRequest, handleSpin])
 
   return (
     <div className="wheel-stage">

@@ -19,7 +19,7 @@ export default function App() {
   const [secondsLeft, setSecondsLeft] = useState(AUTO_RESET_SECONDS)
   const [staffOpen, setStaffOpen] = useState(false)
   const [historyOpen, setHistoryOpen] = useState(false)
-  const [spinRequest, setSpinRequest] = useState(0)
+  const [unlocked, setUnlocked] = useState(false)
 
   const { counts, totalSpins, recordSpin, resetToday } = useStats()
   const { entries: winHistory, recordWin, resetHistory } = useWinHistory()
@@ -42,6 +42,7 @@ export default function App() {
     setPrize(null)
     pendingPrizeRef.current = null
     setSecondsLeft(AUTO_RESET_SECONDS)
+    setUnlocked(false) // el próximo cliente necesita que el staff ingrese el PIN de nuevo
   }, [clearTimers])
 
   const handleSpinStart = useCallback(() => {
@@ -97,7 +98,7 @@ export default function App() {
   }
 
   const handlePinSuccess = useCallback(() => {
-    setSpinRequest((n) => n + 1)
+    setUnlocked(true)
   }, [])
 
   return (
@@ -121,7 +122,9 @@ export default function App() {
         </button>
         <p className="app__instruction">
           {phase === 'idle'
-            ? 'Toca la rueda para girar'
+            ? unlocked
+              ? '¡Listo! Toca la rueda para girar'
+              : 'Pide al staff tu PIN para girar'
             : phase === 'spinning'
               ? 'Girando…'
               : phase === 'branches'
@@ -133,7 +136,7 @@ export default function App() {
             <p className="app__disclaimer">
               Participa por la compra mínima. ¡Una sola participación por factura! Restricciones aplican.
             </p>
-            <PinGate onSuccess={handlePinSuccess} />
+            {!unlocked && <PinGate onSuccess={handlePinSuccess} />}
           </>
         )}
       </aside>
@@ -141,8 +144,7 @@ export default function App() {
       <main className="app__wheel-area">
         <Wheel
           canSpin={phase === 'idle'}
-          locked={phase === 'idle'}
-          spinRequest={spinRequest}
+          locked={phase === 'idle' && !unlocked}
           onSpinStart={handleSpinStart}
           onResult={handleSpinDone}
         />
