@@ -55,7 +55,7 @@ export const PRIZES = [
     color: 'var(--coffee)', // café — marrón
     textColor: 'var(--cream)', // rebanada oscura → texto claro
     isWin: true,
-    weight: 400, // 1 de cada 7
+    weight: 560, // 1 de cada 5
     angle: 60,
   },
   {
@@ -79,7 +79,7 @@ export const PRIZES = [
     color: 'var(--charcoal)', // sigue participando — neutro
     textColor: 'var(--cream)', // rebanada oscura → texto claro
     isWin: false,
-    weight: 1973,
+    weight: 1813,
     angle: 55,
   },
   {
