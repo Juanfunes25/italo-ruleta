@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mantenimiento de Equipos - Ítalo</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div>
+      <h1>🔧 Mantenimiento de Equipos</h1>
+      <div class="sub">Aires acondicionados · refrigeradoras · freezers · bastidores · máquinas</div>
+    </div>
+    <div class="sub">
+      <a href="/tecnico" style="color:#9fd; text-decoration:underline;">Ver enlace para técnico →</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="resumen" id="resumen"></div>
+
+    <div class="toolbar">
+      <button class="primario" id="btnAgregar">+ Agregar equipo/grupo</button>
+    </div>
+
+    <div id="contenedor"></div>
+  </main>
+
+  <footer>Ítalo Gelateria — control interno de mantenimiento</footer>
+
+  <dialog id="dialogAgregar">
+    <div class="dialog-inner">
+      <h2>Agregar equipo / grupo</h2>
+      <form id="formAgregar">
+        <div class="campo">
+          <label>Sucursal</label>
+          <select name="sucursal" id="selSucursal" required></select>
+        </div>
+        <div class="campo">
+          <label>Categoría</label>
+          <input list="listaCategorias" name="categoria" required placeholder="Ej: Aires acondicionados" />
+          <datalist id="listaCategorias"></datalist>
+        </div>
+        <div class="campo">
+          <label>Nombre / detalle</label>
+          <input name="nombre" required placeholder="Ej: Aires acondicionados - Sucursal 1" />
+        </div>
+        <div class="campo">
+          <label>Frecuencia (meses)</label>
+          <input name="frecuencia_meses" type="number" min="1" value="6" required />
+        </div>
+        <div class="campo">
+          <label>Última vez que se hizo (opcional)</label>
+          <input name="ultima_fecha" type="date" />
+        </div>
+        <div class="dialog-botones">
+          <button type="button" class="accion" id="btnCancelarAgregar">Cancelar</button>
+          <button type="submit" class="primario">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <dialog id="dialogEditar">
+    <div class="dialog-inner">
+      <h2>Editar</h2>
+      <form id="formEditar">
+        <input type="hidden" name="id" />
+        <div class="campo">
+          <label>Nombre / detalle</label>
+          <input name="nombre" required />
+        </div>
+        <div class="campo">
+          <label>Frecuencia (meses)</label>
+          <input name="frecuencia_meses" type="number" min="1" required />
+        </div>
+        <div class="campo">
+          <label>Última vez registrada</label>
+          <input name="ultima_fecha" type="date" />
+        </div>
+        <div class="campo">
+          <label>Notas</label>
+          <textarea name="notas" rows="2"></textarea>
+        </div>
+        <div class="dialog-botones">
+          <button type="button" class="accion" id="btnCancelarEditar">Cancelar</button>
+          <button type="submit" class="primario">Guardar cambios</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <dialog id="dialogHistorial">
+    <div class="dialog-inner">
+      <h2>Historial</h2>
+      <div id="historialContenido"></div>
+      <div class="dialog-botones">
+        <button type="button" class="accion" id="btnCerrarHistorial">Cerrar</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
